@@ -1,19 +1,9 @@
 import streamlit as st
-import modal
-import json
-import os
 import openai
 from langchain.document_loaders import JSONLoader, DirectoryLoader
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
 from langchain.vectorstores import Chroma
 from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQA
-from langchain.prompts import PromptTemplate
-from langchain.memory import ConversationBufferMemory
-from langchain.chains import ConversationalRetrievalChain
+
 
 
 def pretty_print_docs(docs):

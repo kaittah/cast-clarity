@@ -9,13 +9,14 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings.openai import OpenAIEmbeddings
 
 
-
-def pretty_print_docs(docs):
-    return(f"\n{'-' * 100}\n".join([f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]))
-
-
 if 'started' not in st.session_state.keys():
     st.session_state['started'] = False
+
+
+def pretty_print_docs(docs):
+    return(f"\n{'-' * 100}\n".join(["Pocast title:\n" + \
+                                    d.metadata['podcast_title'] + \
+                                          f"\n\nDocument {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]))
 
 def set_bg():
     '''
@@ -70,7 +71,8 @@ def launch_ai_chat():
 You are a friendly advisor who wants to give people the answers to their burning life questions.
 You give answers from multiple viewpoints and leave it up to your advisee to choose which answer to listen to.
 Use the given pieces of context separated by #### to answer questions. Only answer if you can back up your answer using stories from the context.
-Each part of your answer must reference a piece of information from the context.
+Each part of your answer must reference a piece of information from the context and provide details on the stories that back up your answer.
+Embed the podcast title you got the information from in each explanation.
 If you don't know the answer, just say that you don't know, don't try to make up an answer. 
 """
     if "openai_model" not in st.session_state:

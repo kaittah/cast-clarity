@@ -1,0 +1,7 @@
+streamlit
+modal
+openai
+langchain
+jq
+chromadb
+tiktoken
